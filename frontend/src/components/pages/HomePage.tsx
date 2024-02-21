@@ -33,7 +33,7 @@ export default function HomePage() {
         className='App-logo'
         alt='logo'
       /> */}
-      <div className='group_container'>
+      <div className='group_container' onClick={() => navigate("/some/link")}>
           {/* {groupsList.map((group) =>
             (
             <>
@@ -46,7 +46,7 @@ export default function HomePage() {
             )
           )} */}
           <img src={logo} alt="" />
-          <div className='group_description' onClick={() => navigate("/some/link")}>
+          <div className='group_description'>
             <h1 className='group_name'>Group Name</h1>
             <h4 className='group_motto'>Group Motto</h4>
             <p>10 Users</p>
