@@ -40,9 +40,11 @@ export default function HomePage() {
           )}
       </div>
 
-      <LogoutIcon 
-        sx={{position: "fixed", top: 0, right: 0, zIndex: 2000, height: 50, width: 50, marginRight: 5}}>
-      </LogoutIcon>
+      <Button onClick={() => navigate('/login')}>
+        <LogoutIcon  
+          sx={{position: "fixed", top: 0, right: 0, zIndex: 2000, height: 50, width: 50, marginRight: 5}}>
+        </LogoutIcon>
+      </Button>
 
     </Box>
   );
