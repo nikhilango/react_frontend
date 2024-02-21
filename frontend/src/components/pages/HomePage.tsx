@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Group } from '../../types/models/Group';
 import LogoutIcon from '@mui/icons-material/Logout';
 import GroupsService from '../../Services/GroupsService';
+import "../../HomePage.css";
 
 export default function HomePage() {
 
@@ -32,7 +33,7 @@ export default function HomePage() {
         className='App-logo'
         alt='logo'
       /> */}
-      <div>
+      <div className='group_container'>
           {/* {groupsList.map((group) =>
             (
             <>
@@ -45,10 +46,11 @@ export default function HomePage() {
             )
           )} */}
           <img src={logo} alt="" />
-          <h1>Group Name</h1>
-          <h2>Group Motto</h2>
-          <p>10 Users</p>
-          <Button onClick={() => navigate("/some/link")}>View Users</Button>
+          <div className='group_description' onClick={() => navigate("/some/link")}>
+            <h1 className='group_name'>Group Name</h1>
+            <h4 className='group_motto'>Group Motto</h4>
+            <p>10 Users</p>
+          </div>
       </div>
 
       <Button onClick={() => navigate('/login')}>
