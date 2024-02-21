@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Group } from '../../types/models/Group';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function HomePage() {
 
@@ -38,6 +39,11 @@ export default function HomePage() {
             )
           )}
       </div>
+
+      <LogoutIcon 
+        sx={{position: "fixed", top: 0, right: 0, zIndex: 2000, height: 50, width: 50, marginRight: 5}}>
+      </LogoutIcon>
+
     </Box>
   );
 }
