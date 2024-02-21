@@ -1,7 +1,16 @@
-import { Box, flexbox } from '@mui/system';
+import { Box } from '@mui/system';
 import logo from '../../logo1.png';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Group } from '../../types/models/Group';
 
 export default function HomePage() {
+
+  const [groupsList, setGroupsList] = useState<Group[]>([]);
+  const navigate = useNavigate();
+
+
   return (
     <Box
       display='flex'
@@ -16,6 +25,19 @@ export default function HomePage() {
         className='App-logo'
         alt='logo'
       />
+      <div>
+          {groupsList.map((group) =>
+            (
+            <>
+              <img src={logo} alt="" />
+              <h1>{group.name}</h1>
+              <h2>{group.motto}</h2>
+              <p>{group.users.length}</p>
+              <Button onClick={() => navigate("/some/link")}>View Users</Button>
+            </>
+            )
+          )}
+      </div>
     </Box>
   );
 }
