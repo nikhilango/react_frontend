@@ -28,8 +28,8 @@ public class GroupController {
         this.groupMapper = groupMapper;
     }
     @GetMapping("/{id}")
-    public ResponseEntity<GroupDTO> retrieveById(@PathVariable UUID id) {
-        Group group = groupService.findById(id);
+    public ResponseEntity<GroupDTO> oneGroupById(@PathVariable UUID id) {
+        Group group = groupService.getGroupById(id);
         return new ResponseEntity<>(groupMapper.toDTO(group), HttpStatus.OK);
     }
 }

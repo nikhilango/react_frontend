@@ -3,10 +3,11 @@ package com.example.demo.domain.group;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
+import java.util.Optional;
 import java.util.UUID;
 
-import static org.springframework.data.jpa.repository.support.JpaRepositoryFactory.EclipseLinkProjectionQueryCreationListener.log;
 @Log4j2
 @Service
 public class GroupService {
@@ -17,6 +18,6 @@ public class GroupService {
     }
     public Group getGroupById(UUID id){
     log.info("found id:" + id);
-
+    return repository.findById(id).orElseThrow(() -> new NotFoundException("ID " + id + "not found"));
     }
 }
