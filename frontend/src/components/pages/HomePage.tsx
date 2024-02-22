@@ -26,13 +26,7 @@ export default function HomePage() {
       justifyContent='center'
       flexDirection={'column'}
     >
-      <h1>Welcome to the Homepage</h1>
-      {/* <img
-        src={logo}
-        style={{ filter: 'invert(100%)' }}
-        className='App-logo'
-        alt='logo'
-      /> */}
+      <h1>Groups</h1>
       <div className='group_container' onClick={() => navigate("/some/link")}>
           {/* {groupsList.map((group) =>
             (
@@ -52,12 +46,6 @@ export default function HomePage() {
             <p>10 Users</p>
           </div>
       </div>
-
-      <Button onClick={() => navigate('/login')}>
-        <LogoutIcon  
-          sx={{position: "fixed", top: 0, right: 0, zIndex: 2000, height: 50, width: 50, marginRight: 5}}>
-        </LogoutIcon>
-      </Button>
 
     </Box>
   );
