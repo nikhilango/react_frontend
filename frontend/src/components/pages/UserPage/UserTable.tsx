@@ -37,7 +37,7 @@ const UserTable = () => {
   };
 
   const handleDeleteUser = (id: string) => {
-    UserService.deleteUser(id).then(navigate("/users"));
+    UserService.deleteUser(id);
   };
 
   return (

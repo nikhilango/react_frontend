@@ -26,13 +26,7 @@ export default function HomePage() {
       justifyContent='center'
       flexDirection={'column'}
     >
-      <h1>Welcome to the Homepage</h1>
-      {/* <img
-        src={logo}
-        style={{ filter: 'invert(100%)' }}
-        className='App-logo'
-        alt='logo'
-      /> */}
+      <h1>Groups</h1>
       <div className='group_container' onClick={() => navigate("/some/link")}>
           {/* {groupsList.map((group) =>
             (
