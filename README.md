@@ -1,13 +1,7 @@
 # üK 223 Frontend Setup
 
 This is the Frontend Setup for the Application. This is the next step after you have finished setting up the backend. 
-The Frontend is made using React and TypeScript in Visual Studio Code
-
-## Clone this Repo
-
-```
-git clone https://github.com/nikhilango/uek223_group3.git
-```
+The Frontend is made using React and TypeScript in Visual Studio Code. 
 
 ## This Setup is made using the following package manager:
 
