@@ -33,6 +33,13 @@ export default function HomePage() {
         flexDirection={'column'}
       >
       <h1>ADMIN</h1>
+      <Button 
+        onClick={() => navigate("/users")}
+        size="small"
+        variant="contained"
+      >
+        See All Users
+      </Button>
       <h1>Groups</h1>
       <div>
         {groupsList.map((group) =>
