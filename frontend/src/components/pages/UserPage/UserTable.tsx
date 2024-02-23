@@ -23,7 +23,7 @@ const UserTable = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    UserService.getAllUsers().then((data) => {
+    UserService.getAllUsers().then((data: any) => {
       setUsers(data.data);
     });
   }, []);
