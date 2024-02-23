@@ -41,7 +41,7 @@ export default function HomePage() {
         See All Users
       </Button>
       <h1>Groups</h1>
-      <div>
+      {/* <div>
         {groupsList.map((group) =>
             (
             <>
@@ -53,6 +53,38 @@ export default function HomePage() {
             </>
             )
         )}
+      </div> */}
+      <div className='group_container' onClick={() => navigate("/some/link")}>
+          <img src={logo} alt="" />
+          <div className='group_description'>
+            <h1 className='group_name'>Googlers</h1>
+            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+            <p>10 Users</p>
+          </div>
+      </div>
+      <div className='group_container' onClick={() => navigate("/some/link")}>
+          <img src={logo} alt="" />
+          <div className='group_description'>
+            <h1 className='group_name'>Humans</h1>
+            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+            <p>10 Users</p>
+          </div>
+      </div>
+      <div className='group_container' onClick={() => navigate("/some/link")}>
+          <img src={logo} alt="" />
+          <div className='group_description'>
+            <h1 className='group_name'>People</h1>
+            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+            <p>10 Users</p>
+          </div>
+      </div>
+      <div className='group_container' onClick={() => navigate("/some/link")}>
+          <img src={logo} alt="" />
+          <div className='group_description'>
+            <h1 className='group_name'>Animals</h1>
+            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+            <p>10 Users</p>
+          </div>
       </div>
     </Box>
     );
