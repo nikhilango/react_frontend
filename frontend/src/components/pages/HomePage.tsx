@@ -145,31 +145,31 @@ export default function HomePage() {
       flexDirection={'column'}
     >
       <h1>Groups</h1>
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>Group Name</h1>
-            <h4 className='group_motto'>Group Motto</h4>
-            <Accordion className='dropdown'>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                10 Users
-              </AccordionSummary>
-              <AccordionDetails>
-                Freddy Ortega,
-                Karissa Andrews,
-                Julio Mcpherson,
-                Laci Huang,
-                Naima Kennedy,
-                Camilla Washington,
-                Jorden Huffman,
-                Rudy Gamble
-              </AccordionDetails>
+      <div className='group_container'>
+        <img src={logo} alt="" />
+        <div className='group_description'>
+          <h1 className='group_name'>Googlers</h1>
+          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+          <Accordion className='dropdown'>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              10 Users
+            </AccordionSummary>
+            <AccordionDetails>
+              Freddy Ortega,
+              Karissa Andrews,
+              Julio Mcpherson,
+              Laci Huang,
+              Naima Kennedy,
+              Camilla Washington,
+              Jorden Huffman,
+              Rudy Gamble
+            </AccordionDetails>
           </Accordion>
-          </div>
+        </div>
       </div>
 
     </Box>
