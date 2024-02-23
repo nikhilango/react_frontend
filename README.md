@@ -75,9 +75,9 @@ The Frontend is made using React and TypeScript in Visual Studio Code.
 
 ## Use this link to install Node.js:
 
-```
+
 https://nodejs.org/en
-```
+
 
 ## How to install yarn
 
