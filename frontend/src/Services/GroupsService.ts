@@ -1,9 +1,10 @@
 import { AxiosInstance } from "axios";
 import defaultAxiosInstance from "../config/Api";
+import api from '../config/Api';
 import { Group } from "../types/models/Group";
 
 
-const GroupsService = (api: AxiosInstance = defaultAxiosInstance) => ({
+const GroupsService = ({
     getGroup: async (groupId: string) => {
         return await api.get<Group>(`/group/${groupId}`);
     },
@@ -13,7 +14,7 @@ const GroupsService = (api: AxiosInstance = defaultAxiosInstance) => ({
     },
 
     createGroup: (group: Group) => {
-        return api.post("/group", group).then((res) => {
+        return api.post("/group", group).then((res: any) => {
             return res.data;
         })
     },

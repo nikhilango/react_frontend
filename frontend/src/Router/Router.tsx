@@ -5,6 +5,7 @@ import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
+import GroupPage from "../components/pages/GroupPage";
 
 /**
  * Router component renders a route switch with all available pages
@@ -44,7 +45,24 @@ const Router = () => {
           ></PrivateRoute>
         }
       />
-
+      <Route
+        path='/groupedit'
+        element={
+          <PrivateRoute
+            requiredAuths={[authorities.USER_MODIFY]}
+            element={<GroupPage />}
+          ></PrivateRoute>
+        }
+      />
+      <Route
+        path='/groupedit/:groupId'
+        element={
+          <PrivateRoute
+            requiredAuths={[authorities.USER_MODIFY]}
+            element={<GroupPage />}
+          ></PrivateRoute>
+        }
+      />
       <Route path='*' element={<div>Not Found</div>} />
     </Routes>
   );

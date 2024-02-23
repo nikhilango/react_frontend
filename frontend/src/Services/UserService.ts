@@ -12,7 +12,7 @@ const UserService = {
   },
 
   addUser: (user: User) => {
-    return api.post('/user/registerUser', user).then((res) => {
+    return api.post('/user/registerUser', user).then((res: any) => {
       return res.data;
     });
   },
