@@ -1,8 +1,11 @@
 import { useFormik } from 'formik';
 import { Group } from '../../types/models/Group';
-import { Box, Button, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { object, string } from 'yup';
+import { useEffect, useState } from 'react';
+import { User } from '../../types/models/User.model';
+import UserService from '../../Services/UserService';
 
 interface GroupProps {
   group: Group;
@@ -11,6 +14,14 @@ interface GroupProps {
 
 const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
   const navigate = useNavigate();
+
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    UserService.getAllUsers().then((data: any) => {
+      setUsers(data.data);
+    });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -45,9 +56,6 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             error={Boolean(formik.touched.name && formik.errors.name)}
             value={formik.values.name}
           />
-          {formik.errors.name && formik.touched.name ? (
-            <div style={{ color: 'red' }}>{formik.errors.name}</div>
-          ) : null}
           <TextField
             id='motto'
             label='Motto'
@@ -58,9 +66,19 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             error={Boolean(formik.touched.motto && formik.errors.motto)}
             value={formik.values.motto}
           />
-          {formik.errors.motto && formik.touched.motto ? (
-            <div style={{ color: 'red' }}>{formik.errors.motto}</div>
-          ) : null}
+          <Autocomplete
+            multiple
+            id="tags-standard"
+            options={users}
+            getOptionLabel={(option) => option.email}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="standard"
+                label="Users"
+              />
+            )}
+          />
         </Box>
         <div>
           <Button
@@ -68,7 +86,6 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             variant='contained'
             color='success'
             type='submit'
-            disabled={!(formik.dirty && formik.isValid)}
           >
             {group.id && 'Save'}
             {!group.id && 'Add'}
