@@ -26,4 +26,9 @@ public class GroupService {
     log.info("found all id's");
     return repository.findAll();
     }
+
+    public Group createGroup(Group group){
+    repository.save(group);
+    return group;
+    }
 }

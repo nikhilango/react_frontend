@@ -2,17 +2,14 @@ package com.example.demo.domain.group;
 
 import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.group.dto.GroupMapper;
-import com.example.demo.domain.user.User;
-import com.example.demo.domain.user.dto.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,5 +36,12 @@ public class GroupController {
     public ResponseEntity<List<GroupDTO>> allGroups(){
         List<Group> groups = groupService.getAllgroups();
         return new ResponseEntity<>(groupMapper.toDTOs(groups), HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    @PreAuthorize("hasAuthority('GROUP_CREATE')")
+    public ResponseEntity<GroupDTO> createGroup (@Valid @RequestBody GroupDTO group){
+        Group returnedGroup = groupService.createGroup(groupMapper.fromDTO(group));
+        return new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.CREATED);
     }
 }
