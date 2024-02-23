@@ -1,6 +1,7 @@
 import { Box } from '@mui/system';
 import logo from "../../images/team-placeholder.png";
-import { Button } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Group } from '../../types/models/Group';
@@ -54,37 +55,83 @@ export default function HomePage() {
             )
         )}
       </div> */}
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>Googlers</h1>
-            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-            <p>10 Users</p>
-          </div>
+      <div className='group_container'>
+        <img src={logo} alt="" />
+        <div className='group_description'>
+          <h1 className='group_name'>Googlers</h1>
+          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+          <Accordion className='dropdown'>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              10 Users
+            </AccordionSummary>
+            <AccordionDetails>
+              Freddy Ortega,
+              Karissa Andrews,
+              Julio Mcpherson,
+              Laci Huang,
+              Naima Kennedy,
+              Camilla Washington,
+              Jorden Huffman,
+              Rudy Gamble
+            </AccordionDetails>
+          </Accordion>
+        </div>
       </div>
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>Humans</h1>
-            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-            <p>10 Users</p>
-          </div>
+      <div className='group_container'>
+        <img src={logo} alt="" />
+        <div className='group_description'>
+          <h1 className='group_name'>Googlers</h1>
+          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+          <Accordion className='dropdown'>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              10 Users
+            </AccordionSummary>
+            <AccordionDetails>
+              Freddy Ortega,
+              Karissa Andrews,
+              Julio Mcpherson,
+              Laci Huang,
+              Naima Kennedy,
+              Camilla Washington,
+              Jorden Huffman,
+              Rudy Gamble
+            </AccordionDetails>
+          </Accordion>
+        </div>
       </div>
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>People</h1>
-            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-            <p>10 Users</p>
-          </div>
-      </div>
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>Animals</h1>
-            <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-            <p>10 Users</p>
-          </div>
+      <div className='group_container'>
+        <img src={logo} alt="" />
+        <div className='group_description'>
+          <h1 className='group_name'>Googlers</h1>
+          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+          <Accordion className='dropdown'>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              10 Users
+            </AccordionSummary>
+            <AccordionDetails>
+              Freddy Ortega,
+              Karissa Andrews,
+              Julio Mcpherson,
+              Laci Huang,
+              Naima Kennedy,
+              Camilla Washington,
+              Jorden Huffman,
+              Rudy Gamble
+            </AccordionDetails>
+          </Accordion>
+        </div>
       </div>
     </Box>
     );
@@ -103,7 +150,25 @@ export default function HomePage() {
           <div className='group_description'>
             <h1 className='group_name'>Group Name</h1>
             <h4 className='group_motto'>Group Motto</h4>
-            <p>10 Users</p>
+            <Accordion className='dropdown'>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                10 Users
+              </AccordionSummary>
+              <AccordionDetails>
+                Freddy Ortega,
+                Karissa Andrews,
+                Julio Mcpherson,
+                Laci Huang,
+                Naima Kennedy,
+                Camilla Washington,
+                Jorden Huffman,
+                Rudy Gamble
+              </AccordionDetails>
+          </Accordion>
           </div>
       </div>
 

@@ -10,11 +10,15 @@
     border: solid black 2px;
   }
 img {
-    width: 50%;
+    width: 20%;
     float: left;
 }
 .group_description {
     width: 50%;
-    float: left;
+    float: right;
     margin-left: 50px;
+}
+
+.dropdown {
+    position: relative;
 }
