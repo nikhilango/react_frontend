@@ -34,20 +34,26 @@ export default function HomePage() {
         flexDirection={'column'}
       >
       <h1>ADMIN</h1>
-      <Button 
-        onClick={() => navigate("/users")}
-        size="small"
-        variant="contained"
-      >
-        See All Users
-      </Button>
-      <Button
-        onClick={() => navigate("/groupedit")}
-        size='small'
-        variant='contained'
-      >
-        Add Group
-      </Button>
+      <div className='action_buttons'>
+        <div className='see_all_users_button'>
+          <Button
+            onClick={() => navigate("/users")}
+            size="small"
+            variant="contained"
+          >
+            See All Users
+          </Button>
+        </div>
+        <div className='group_add_button'>
+          <Button
+            onClick={() => navigate("/groupedit")}
+            size='small'
+            variant='contained'
+          >
+            Add Group
+          </Button>
+        </div>
+      </div>
       <h1>Groups</h1>
       {/* <div>
         {groupsList.map((group) =>
