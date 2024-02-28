@@ -2,8 +2,9 @@ import {User} from "./User.model";
 
 export type Group = {
     id: string;
-    logo: string;
     name: string;
-    motto: string;
+    description: string;
+    logo_url: string;
+    member_count: number;
     users: User[];
 }

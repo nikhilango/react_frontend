@@ -5,5 +5,6 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
+  group_id: string;
   roles: Role[];
 };

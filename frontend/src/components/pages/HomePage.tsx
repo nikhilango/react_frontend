@@ -11,13 +11,14 @@ import "../../HomePage.css";
 import { userInfo } from 'os';
 import authorities from '../../config/Authorities';
 import AuthorityService from '../../Services/AuthorityService';
+import UserService from '../../Services/UserService';
+import GroupUserList from '../atoms/GroupUserList';
 
 export default function HomePage() {
 
   const [groupsList, setGroupsList] = useState<Group[]>([]);
   const navigate = useNavigate();
-  const [allUsers, setAllUsers] = useState([]);
-  
+  const [groupUsers, setGroupUsers] = useState([]);
 
   useEffect(() => {
     GroupsService.getAllGroups().then((data : any) => {
@@ -25,9 +26,16 @@ export default function HomePage() {
     });
   })
 
+  const handleGroupUser = (groupId: string) => {
+    UserService.getUserFromGroup(groupId).then((data) => {
+      return data.data;
+    })
+  }
+
+
   if ([authorities.USER_MODIFY].some(AuthorityService.hasAuthority)) {
-    return (
-      <Box
+     return (
+       <Box
         display='flex'
         alignItems='center'
         justifyContent='center'
@@ -55,122 +63,30 @@ export default function HomePage() {
         </div>
       </div>
       <h1>Groups</h1>
-      {/* <div>
+      <div>
         {groupsList.map((group) =>
             (
             <div className='group_container'>
               <img src={logo} alt="" />
               <div className='group_description'>
-                <h1 className='group_name'>Googlers</h1>
-                <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
+                <h1 className='group_name'>{group.name}</h1>
+                <h4 className='group_motto'>{group.description}</h4>
                 <Accordion className='dropdown'>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header"
                   >
-                    10 Users
+                    Users: {group.member_count}
                   </AccordionSummary>
                   <AccordionDetails>
-                    Freddy Ortega,
-                    Karissa Andrews,
-                    Julio Mcpherson,
-                    Laci Huang,
-                    Naima Kennedy,
-                    Camilla Washington,
-                    Jorden Huffman,
-                    Rudy Gamble
+                    <GroupUserList groupId={group.id}></GroupUserList>
                   </AccordionDetails>
                 </Accordion>
-                <Button
-                  onClick={() => handleEditGroup(group.id)}
-                  size='small'
-                  variant='contained'
-                >
-                  Edit Group
-                </Button>
               </div>
             </div>
             )
         )}
-      </div> */}
-      <div className='group_container'>
-        <img src={logo} alt="" />
-        <div className='group_description'>
-          <h1 className='group_name'>Googlers</h1>
-          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-          <Accordion className='dropdown'>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              10 Users
-            </AccordionSummary>
-            <AccordionDetails>
-              Freddy Ortega,
-              Karissa Andrews,
-              Julio Mcpherson,
-              Laci Huang,
-              Naima Kennedy,
-              Camilla Washington,
-              Jorden Huffman,
-              Rudy Gamble
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      </div>
-      <div className='group_container'>
-        <img src={logo} alt="" />
-        <div className='group_description'>
-          <h1 className='group_name'>Googlers</h1>
-          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-          <Accordion className='dropdown'>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              10 Users
-            </AccordionSummary>
-            <AccordionDetails>
-              Freddy Ortega,
-              Karissa Andrews,
-              Julio Mcpherson,
-              Laci Huang,
-              Naima Kennedy,
-              Camilla Washington,
-              Jorden Huffman,
-              Rudy Gamble
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      </div>
-      <div className='group_container'>
-        <img src={logo} alt="" />
-        <div className='group_description'>
-          <h1 className='group_name'>Googlers</h1>
-          <h4 className='group_motto'>Lorem ipsum dolor sit amet.</h4>
-          <Accordion className='dropdown'>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              10 Users
-            </AccordionSummary>
-            <AccordionDetails>
-              Freddy Ortega,
-              Karissa Andrews,
-              Julio Mcpherson,
-              Laci Huang,
-              Naima Kennedy,
-              Camilla Washington,
-              Jorden Huffman,
-              Rudy Gamble
-            </AccordionDetails>
-          </Accordion>
-        </div>
       </div>
     </Box>
     );
@@ -184,27 +100,31 @@ export default function HomePage() {
       flexDirection={'column'}
     >
       <h1>Groups</h1>
-      <div className='group_container' onClick={() => navigate("/some/link")}>
-          {/* {groupsList.map((group) =>
+      <div>
+        {groupsList.map((group) =>
             (
-            <>
+            <div className='group_container'>
               <img src={logo} alt="" />
-              <h1>{group.name}</h1>
-              <h2>{group.motto}</h2>
-              <p>{group.users.length}</p>
-              <Button onClick={() => navigate("/some/link")}>View Users</Button>
-            </>
+              <div className='group_description'>
+                <h1 className='group_name'>{group.name}</h1>
+                <h4 className='group_motto'>{group.description}</h4>
+                <Accordion className='dropdown'>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    Users: {group.member_count}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <GroupUserList groupId={group.id}></GroupUserList>
+                  </AccordionDetails>
+                </Accordion>
+              </div>
+            </div>
             )
-          )} */}
-          <img src={logo} alt="" />
-          <div className='group_description'>
-            <h1 className='group_name'>Group Name</h1>
-            <h4 className='group_motto'>Group Motto</h4>
-            <p>10 Users</p>
-          </div>
+        )}
       </div>
-      
-
     </Box>
   );
 }

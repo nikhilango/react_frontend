@@ -13,9 +13,10 @@ const GroupPage = () => {
 
   const [group, setGroup] = useState<Group>({
     id: "",
-    logo: "",
     name: "",
-    motto: "",
+    description: "",
+    logo_url: "",
+    member_count: 0,
     users: [],
   });
 
