@@ -23,7 +23,7 @@ const GroupPage = () => {
     return () => {
     if (groupId) {
         GroupsService.getGroup(groupId).then((res) => {
-        return setGroup(res);
+        return setGroup(res.data);
         });
     }
     };
