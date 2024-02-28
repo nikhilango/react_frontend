@@ -4,6 +4,7 @@ import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.group.dto.GroupMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,8 +34,8 @@ public class GroupController {
     }
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('USER_READ_GROUPS')")
-    public ResponseEntity<List<GroupDTO>> allGroups(){
-        List<Group> groups = groupService.findAll();
+    public ResponseEntity<List<GroupDTO>> allGroups(@RequestParam(defaultValue = "0") int page){
+        List<Group> groups = groupService.findAll(PageRequest.of(page, 10));
         return new ResponseEntity<>(groupMapper.toDTOs(groups), HttpStatus.OK);
     }
 
