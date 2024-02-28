@@ -55,7 +55,7 @@ public class GroupController {
     @PreAuthorize("hasAuthority('GROUP_CREATE')")
     @Operation(summary = "Creates a group", description = "When successful it creates a group and returns a JSON-Code with the status code 200.")
     public ResponseEntity<GroupDTO> createGroup (@Valid @RequestBody GroupDTO group){
-        Group returnedGroup = groupService.save(groupMapper.fromDTO(group));
+        Group returnedGroup = groupService.createGroup(groupMapper.fromDTO(group));
         return new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
