@@ -38,16 +38,22 @@ public class GroupController {
         return new ResponseEntity<>(groupMapper.toDTOs(groups), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping({"", "/"})
     @PreAuthorize("hasAuthority('GROUP_CREATE')")
     public ResponseEntity<GroupDTO> createGroup (@Valid @RequestBody GroupDTO group){
         Group returnedGroup = groupService.save(groupMapper.fromDTO(group));
         return new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('GROUP_MODIFY')")
     public ResponseEntity<GroupDTO> updateGroup (@Valid @RequestBody GroupDTO group, @PathVariable UUID id) {
         Group returnedGroup = groupService.updateById(id,groupMapper.fromDTO(group));
         return  new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('GROUP_DELETE')")
+    public ResponseEntity<HttpStatus> deleteGroup (@PathVariable UUID id){
+        groupService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
