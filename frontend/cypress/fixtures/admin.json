@@ -1,0 +1,6 @@
+{
+    "loginpage": "localhost:3000/login",
+    "homepage" : "localhost:3000/",
+    "email": "admin@example.com",
+    "password": "1234"
+  }
