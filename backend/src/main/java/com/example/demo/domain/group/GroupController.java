@@ -18,30 +18,36 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/group")
 public class GroupController {
-    private final GroupService groupService;
+    private final GroupServiceImpl groupService;
     private final GroupMapper groupMapper;
 
 @Autowired
-    public GroupController(GroupService groupService, GroupMapper groupMapper) {
+    public GroupController(GroupServiceImpl groupService, GroupMapper groupMapper) {
         this.groupService = groupService;
         this.groupMapper = groupMapper;
     }
     @GetMapping("/{id}")
     public ResponseEntity<GroupDTO> groupById(@PathVariable UUID id) {
-        Group group = groupService.getGroupById(id);
+        Group group = groupService.findById(id);
         return new ResponseEntity<>(groupMapper.toDTO(group), HttpStatus.OK);
     }
     @GetMapping({"", "/"})
     @PreAuthorize("hasAuthority('USER_READ_GROUPS')")
     public ResponseEntity<List<GroupDTO>> allGroups(){
-        List<Group> groups = groupService.getAllgroups();
+        List<Group> groups = groupService.findAll();
         return new ResponseEntity<>(groupMapper.toDTOs(groups), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('GROUP_CREATE')")
     public ResponseEntity<GroupDTO> createGroup (@Valid @RequestBody GroupDTO group){
-        Group returnedGroup = groupService.createGroup(groupMapper.fromDTO(group));
+        Group returnedGroup = groupService.save(groupMapper.fromDTO(group));
         return new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.CREATED);
+    }
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('GROUP_MODIFY')")
+    public ResponseEntity<GroupDTO> updateGroup (@Valid @RequestBody GroupDTO group, @PathVariable UUID id) {
+        Group returnedGroup = groupService.updateById(id,groupMapper.fromDTO(group));
+        return  new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.OK);
     }
 }
