@@ -69,7 +69,7 @@ export default function HomePage() {
                     aria-controls="panel1-content"
                     id="panel1-header"
                   >
-                    Users: {group.member_count}
+                    Users: {group.memberCount}
                   </AccordionSummary>
                   <AccordionDetails>
                     <GroupUserList groupId={group.id}></GroupUserList>
@@ -111,7 +111,7 @@ export default function HomePage() {
                     aria-controls="panel1-content"
                     id="panel1-header"
                   >
-                    Users: {group.member_count}
+                    Users: {group.memberCount}
                   </AccordionSummary>
                   <AccordionDetails>
                     <GroupUserList groupId={group.id}></GroupUserList>
