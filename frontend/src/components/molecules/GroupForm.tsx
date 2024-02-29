@@ -7,22 +7,28 @@ import { useEffect, useState } from 'react';
 import { User } from '../../types/models/User.model';
 import UserService from '../../Services/UserService';
 
+// Interface defining the props for GroupForm
 interface GroupProps {
   group: Group;
-    submitActionHandler: (values: Group) => void;
-  }
+  submitActionHandler: (values: Group) => void;
+}
 
+// GroupForm component for rendering and handling group form
 const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
+  // Hook for navigation
   const navigate = useNavigate();
 
+  // State to store the list of users
   const [users, setUsers] = useState<User[]>([]);
 
+  // Fetch all users when the component mounts
   useEffect(() => {
     UserService.getAllUsers().then((data: any) => {
       setUsers(data.data);
     });
   }, []);
 
+  // Formik hook for handling form state and validation
   const formik = useFormik({
     initialValues: {
       id: group.id,
@@ -31,24 +37,25 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
       description: group ? group.description : '',
       memberCount: group ? group.memberCount : 0,
       users: group ? group.users : [],
-
     },
     validationSchema: object({
-      firstName: string().required().min(2).max(50),
-      lastName: string().required().min(2).max(50),
-      email: string().required().email(),
+      name: string().required().min(2).max(50),
+      description: string().required().min(2).max(50),
+      // Add more validation rules as needed
     }),
     onSubmit: (values: Group) => {
-      console.log("submit");
-      //submitActionHandler(values);
+      // Handle form submission
+      submitActionHandler(values);
     },
     enableReinitialize: true,
   });
 
+  // Handle Autocomplete change for selecting users
   const handleAutocompleteChange = (event: any, value: any) => {
     formik.setFieldValue('users', value);
   };
 
+  // Render the form with input fields and buttons
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
@@ -95,9 +102,6 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             variant='contained'
             color='success'
             type='submit'
-            onClick={() => {
-              submitActionHandler(formik.values)
-            }}
           >
             {group.id && 'Save'}
             {!group.id && 'Add'}
