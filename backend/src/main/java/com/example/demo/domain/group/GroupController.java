@@ -44,7 +44,7 @@ public class GroupController {
         return new ResponseEntity<>(groupMapper.toDTO(group), HttpStatus.OK);
     }
     @GetMapping({"", "/"})
-    @PreAuthorize("hasAuthority('USER_READ_GROUPS')")
+    @PreAuthorize("hasAuthority('USER_READ_GROUPS') and @userPermissionEvaluator.")
     @Operation(summary = "Fetches a specific group", description = "When successful it fetches a specific group and returns a JSON-Code with the status code 200.")
     public ResponseEntity<List<GroupDTO>> allGroups(@RequestParam(defaultValue = "0") int page){
         List<Group> groups = groupService.findAll(PageRequest.of(page, 10));
@@ -55,7 +55,7 @@ public class GroupController {
     @PreAuthorize("hasAuthority('GROUP_CREATE')")
     @Operation(summary = "Creates a group", description = "When successful it creates a group and returns a JSON-Code with the status code 200.")
     public ResponseEntity<GroupDTO> createGroup (@Valid @RequestBody GroupDTO group){
-        Group returnedGroup = groupService.createGroup(groupMapper.fromDTO(group));
+        Group returnedGroup = groupService.save(groupMapper.fromDTO(group));
         return new ResponseEntity<>(groupMapper.toDTO(returnedGroup), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
@@ -69,12 +69,7 @@ public class GroupController {
     @PreAuthorize("hasAuthority('GROUP_DELETE')")
     @Operation(summary = "Delete a group", description = "When successful it deletes a specific group and returns a JSON-Code with the status code 200.")
     public ResponseEntity<HttpStatus> deleteGroup (@PathVariable UUID id){
-        groupService.deleteById(id);
+        groupService.deleteGroup(id);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-    public UUID getRequestingUserId(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl currentUser = (UserDetailsImpl) authentication.getPrincipal();
-        return currentUser.user().getId();
     }
 }

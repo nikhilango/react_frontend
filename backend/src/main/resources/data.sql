@@ -1,7 +1,7 @@
 --Groups
-INSERT INTO groups (id, name, description, logo_url, member_count)
+INSERT INTO groups (id, name, description, logo_url)
 VALUES
-  ('1d4fb576-eaa5-437a-9053-14fbbfe198f9', 'Nose Community', 'A community for noser employees', 'Test url', 2)
+  ('1d4fb576-eaa5-437a-9053-14fbbfe198f9', 'Nose Community', 'A community for noser employees', 'Test url')
 ON CONFLICT DO NOTHING;
 
 --USERS
@@ -52,7 +52,7 @@ VALUES ('d29e709c-0ff1-4f4c-a7ef-09f656c390f1', '2ebf301e-6c61-4076-98e3-2a38b31
 ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
 ('ab505c92-7280-49fd-a7de-258e618df074', '73f35e6f-c71f-4a03-bbbf-79e7d3fa925e'),
 ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '21c942db-a275-43f8-bdd6-d048c21bf5ab'),
-('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '73f35e6f-c71f-4a03-bbbf-79e7d3fa925e'),
+('01dbec27-4977-4626-91c1-e5480dc0470b', '73f35e6f-c71f-4a03-bbbf-79e7d3fa925e'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'ea6418f3-cdee-4044-ba7a-7b427ad4106e'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'c1958972-f37f-406b-9b57-29dbd28105c0'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'c7fe470c-4b69-44ba-911e-74c17672f3fc'),

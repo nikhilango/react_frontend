@@ -5,6 +5,7 @@ import com.example.demo.domain.role.Role;
 import com.example.demo.domain.role.RoleService;
 import com.example.demo.domain.user.User;
 import lombok.extern.log4j.Log4j2;
+import org.hibernate.annotations.DialectOverride;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,18 +35,22 @@ public class GroupServiceImpl extends AbstractServiceImpl<Group> implements Grou
             Set<User> existingUser = existingGroup.get().getUsers();
             for (User user : newUser) {
                 if (!existingUser.contains(user)) {
+                    log.trace("users added");
                     Set<Role> userRoles = user.getRoles();
+                    userRoles.clear();
                     userRoles.add(roleService.getRoleByName("GROUP_USER"));
-                    userRoles.remove(roleService.getRoleByName("NO_GROUP_USER"));
+                    user.setGroup(findById(id));
+
                 }}
             for (User exUser : existingUser) {
                 if (!newUser.contains(exUser)) {
+                    log.trace("user removed");
                     Set<Role> userRoles = exUser.getRoles();
+                    userRoles.clear();
                     userRoles.add(roleService.getRoleByName("NO_GROUP_USER"));
-                    userRoles.remove(roleService.getRoleByName("GROUP_USER"));
+                    exUser.setGroup(null);
                 }
             }
-            group.setMemberCount(newUser.size());
             return repository.save(group);
         } else {
             throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
@@ -54,12 +59,28 @@ public class GroupServiceImpl extends AbstractServiceImpl<Group> implements Grou
 
     @Override
     public Group createGroup(Group group) {
-    if (group.getUsers().isEmpty()){
-        group.setMemberCount(0);
-    }else {
-        group.setMemberCount(group.getUsers().size());
-    }
+        for (User user: group.getUsers()) {
+            Set<Role> roles = user.getRoles();
+            roles.clear();
+            roles.add(roleService.getRoleByName("GROUP_USER"));
+            user.setGroup(group);
+        }
     repository.save(group);
     return group;
+    }
+    @Override
+    public void deleteGroup(UUID id){
+        if (repository.existsById(id)) {
+            Optional<Group> group = repository.findById(id);
+            for (User user: group.get().getUsers()) {
+               Set<Role> userRoles = user.getRoles();
+               userRoles.clear();
+               userRoles.add(roleService.getRoleByName("NO_GROUP_USER"));
+               user.setGroup(null);
+            }
+            repository.deleteById(id);
+        } else {
+            throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
+        }
     }
 }
