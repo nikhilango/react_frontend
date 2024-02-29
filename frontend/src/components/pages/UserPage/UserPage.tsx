@@ -28,7 +28,7 @@ const UserPage = () => {
   const submitActionHandler = (values: User) => {
     if (userId !== undefined) {
       UserService.updateUser(values).then(() => {
-        navigate('../users');
+        navigate('/users');
       });
     } else {
       UserService.addUser(values).then(() => {

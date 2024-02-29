@@ -26,11 +26,11 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
   const formik = useFormik({
     initialValues: {
       id: group.id,
-      logo_url: group ? group.logo_url : '',
       name: group ? group.name : '',
+      logoUrl: group ? group.logoUrl : '',
       description: group ? group.description : '',
+      memberCount: group ? group.memberCount : 0,
       users: group ? group.users : [],
-      member_count: group ? group.member_count: 0,
 
     },
     validationSchema: object({
@@ -39,10 +39,15 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
       email: string().required().email(),
     }),
     onSubmit: (values: Group) => {
-      submitActionHandler(values);
+      console.log("submit");
+      //submitActionHandler(values);
     },
     enableReinitialize: true,
   });
+
+  const handleAutocompleteChange = (event: any, value: any) => {
+    formik.setFieldValue('users', value);
+  };
 
   return (
     <>
@@ -59,20 +64,22 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             value={formik.values.name}
           />
           <TextField
-            id='motto'
-            label='Motto'
+            id='description'
+            label='Description'
             variant='outlined'
             sx={{ paddingRight: '10px' }}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            error={Boolean(formik.touched.motto && formik.errors.motto)}
-            value={formik.values.motto}
+            error={Boolean(formik.touched.description && formik.errors.description)}
+            value={formik.values.description}
           />
           <Autocomplete
             multiple
             id="tags-standard"
             options={users}
             getOptionLabel={(option) => option.email}
+            onChange={(event, value) => handleAutocompleteChange(event, value)}
+            value={formik.values.users}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -88,6 +95,9 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             variant='contained'
             color='success'
             type='submit'
+            onClick={() => {
+              submitActionHandler(formik.values)
+            }}
           >
             {group.id && 'Save'}
             {!group.id && 'Add'}

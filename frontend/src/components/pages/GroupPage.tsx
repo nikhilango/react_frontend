@@ -15,8 +15,8 @@ const GroupPage = () => {
     id: "",
     name: "",
     description: "",
-    logo_url: "",
-    member_count: 0,
+    logoUrl: "",
+    memberCount: 0,
     users: [],
   });
 
@@ -32,8 +32,9 @@ const GroupPage = () => {
 
   const submitActionHandler = (values: Group) => {
     if (groupId !== undefined) {
+      console.log(values);
       GroupsService.updateGroup(values).then(() => {
-        navigate('../');
+        navigate('/');
       });
     } else {
       GroupsService.createGroup(values).then(() => {

@@ -13,11 +13,11 @@ const GroupUserList: React.FC<Props> = ({groupId}) => {
 
 
 
-    useEffect(() => {
-        UserService.getUserFromGroup(groupId).then((data) => {
-          setUsers(data.data);
-        })
-    })
+    // useEffect(() => {
+    //     UserService.getUserFromGroup(groupId).then((data) => {
+    //       setUsers(data.data);
+    //     })
+    // })
     
     return(
         <div>

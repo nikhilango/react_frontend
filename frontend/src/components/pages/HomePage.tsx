@@ -18,20 +18,12 @@ export default function HomePage() {
 
   const [groupsList, setGroupsList] = useState<Group[]>([]);
   const navigate = useNavigate();
-  const [groupUsers, setGroupUsers] = useState([]);
 
   useEffect(() => {
     GroupsService.getAllGroups().then((data : any) => {
       setGroupsList(data.data);
     });
   })
-
-  const handleGroupUser = (groupId: string) => {
-    UserService.getUserFromGroup(groupId).then((data) => {
-      return data.data;
-    })
-  }
-
 
   if ([authorities.USER_MODIFY].some(AuthorityService.hasAuthority)) {
      return (
@@ -83,6 +75,11 @@ export default function HomePage() {
                     <GroupUserList groupId={group.id}></GroupUserList>
                   </AccordionDetails>
                 </Accordion>
+                <Button
+                  onClick={() => navigate("/groupedit/" + group.id)}
+                >
+                  Edit Group
+                </Button>
               </div>
             </div>
             )
