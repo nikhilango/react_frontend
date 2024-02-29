@@ -1,7 +1,6 @@
 {
-    "Firstname": "localhost:3000/login",
+    "loginpage": "localhost:3000/login",
     "homepage" : "localhost:3000/",
-    "userspage" : "localhost:3000/users",
-    "email": "admin@example.com",
+    "email": "user@example.com",
     "password": "1234"
 }
