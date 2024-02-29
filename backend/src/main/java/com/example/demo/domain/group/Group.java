@@ -30,10 +30,10 @@ public class Group extends AbstractEntity {
     @Column(name = "logo_url")
     private String logoUrl;
 
-    @Column(name = "member_count")
+    @Transient
     private Integer memberCount;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "group")
+    @OneToMany( fetch = FetchType.EAGER, mappedBy = "group")
     @JsonBackReference
     private Set<User> users;
 
@@ -43,6 +43,7 @@ public class Group extends AbstractEntity {
         this.description = description;
         this.logoUrl = logoUrl;
         this.memberCount = memberCount;
+
     }
 
 }

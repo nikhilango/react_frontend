@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface GroupService extends AbstractService<Group> {
     public Group updateById(UUID id, Group group) throws NoSuchElementException;
     public Group createGroup(Group group);
+
+    public void deleteGroup(UUID id);
 }
