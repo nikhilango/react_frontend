@@ -80,6 +80,11 @@ export default function HomePage() {
                 >
                   Edit Group
                 </Button>
+                <Button
+                  onClick={() => GroupsService.deleteGroup(group.id)}
+                >
+                  Delete Group
+                </Button>
               </div>
             </div>
             )
