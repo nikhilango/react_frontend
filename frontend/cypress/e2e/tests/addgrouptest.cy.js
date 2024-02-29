@@ -17,16 +17,16 @@ describe('Add Group', () => {
 
         cy.contains("Add Group").click();
         cy.url().should("include", admin.groupedit);
-    //    cy.screenshot();
+        cy.screenshot();
 
         cy.get("#name").type("testname");
         cy.get("#description").type("testdescription");
         cy.contains("Add").click();
-    //  cy.screenshot();
+        cy.screenshot();
 
         cy.contains("testname").should('be.visible');
         cy.contains("testdescription").should('be.visible');
-    //  cy.screenshot();
+        cy.screenshot();
     }
     )
  })
