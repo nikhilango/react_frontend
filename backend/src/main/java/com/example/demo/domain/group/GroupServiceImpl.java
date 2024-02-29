@@ -89,5 +89,22 @@ public class GroupServiceImpl extends AbstractServiceImpl<Group> implements Grou
         // Return the saved group
         return group;
     }
+    @Override
+    public void deleteById(UUID id) {
+        // Retrieve the group
+        Group group = repository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Group not found with id: " + id));
+
+        // Remove association of the group from users
+        for (User user : group.getUsers()) {
+            user.setGroup(null);
+            // Save the updated user (remove the association with the group)
+            userRepository.save(user);
+        }
+
+        // Finally, delete the group
+        repository.deleteById(id);
+    }
+
 
 }

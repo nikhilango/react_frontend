@@ -33,7 +33,7 @@ public class Group extends AbstractEntity {
     @Transient
     private Integer memberCount;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JsonBackReference
     private Set<User> users;
 

@@ -10,4 +10,6 @@ public interface GroupService extends AbstractService<Group> {
     Group updateById(UUID id, Group entity) throws NoSuchElementException;
     @Override
     Group save(Group group);
+    @Override
+    public void deleteById(UUID id);
 }
