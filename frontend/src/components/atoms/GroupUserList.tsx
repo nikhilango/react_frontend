@@ -25,8 +25,6 @@ const GroupUserList: React.FC<Props> = ({groupId}) => {
                 (   
                     <div>
                         <p>{user.email}</p>
-                        <p>{user.firstName}</p>
-                        <p>{user.lastName}</p>
                     </div>
                 )
             )}

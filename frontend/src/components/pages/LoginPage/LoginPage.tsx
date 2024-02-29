@@ -70,7 +70,7 @@ const Login = () => {
           validateOnChange
           isInitialValid
         >
-          {(props) => (
+          {(props: any) => (
             <Form onSubmit={props.handleSubmit}>
               <TextField
                 label='email'
