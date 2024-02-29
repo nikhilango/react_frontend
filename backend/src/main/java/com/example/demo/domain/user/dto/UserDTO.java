@@ -2,6 +2,7 @@ package com.example.demo.domain.user.dto;
 
 import com.example.demo.core.generic.AbstractDTO;
 import com.example.demo.domain.group.Group;
+import com.example.demo.domain.group.dto.GroupDTO;
 import com.example.demo.domain.role.dto.RoleDTO;
 import java.util.Set;
 import java.util.UUID;
@@ -31,11 +32,10 @@ public class UserDTO extends AbstractDTO {
   @Valid
   private Set<RoleDTO> roles;
 
-  @ManyToOne
-  @JoinColumn(name = "group_id", referencedColumnName = "id")
-  private Group group;
 
-  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles, Group group) {
+  private GroupDTO group;
+
+  public UserDTO(UUID id, String firstName, String lastName, String email, Set<RoleDTO> roles, GroupDTO group) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;

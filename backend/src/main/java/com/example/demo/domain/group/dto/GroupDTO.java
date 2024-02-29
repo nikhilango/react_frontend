@@ -1,7 +1,7 @@
 package com.example.demo.domain.group.dto;
 
 import com.example.demo.core.generic.AbstractDTO;
-import com.example.demo.domain.user.dto.UserDTO;
+import com.example.demo.domain.user.dto.MinimalUserDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -26,6 +26,6 @@ public class GroupDTO extends AbstractDTO {
     private Integer memberCount;
 
     @Valid
-    private Set<UserDTO> users;
+    private Set<MinimalUserDTO> users;
 
 }
