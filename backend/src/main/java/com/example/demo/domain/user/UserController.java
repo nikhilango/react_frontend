@@ -58,7 +58,7 @@ public class UserController {
   }
 
   @GetMapping("group/{id}")
-  @PreAuthorize("hasAuthority('READ_OWN_GROUP')")
+  @PreAuthorize("hasAuthority('READ_OWN_GROUP') or @userPermissionEvaluator.isInGroup(authentication.principal.user, #id)")
   public ResponseEntity<List<UserDTO>> getUserFromGroup(@PathVariable UUID id, @RequestParam(defaultValue = "0") int page){
       return ResponseEntity.ok().body(userMapper.toDTOs(userService.getUsersByGroupId(id, PageRequest.of(page, 10))));
   }

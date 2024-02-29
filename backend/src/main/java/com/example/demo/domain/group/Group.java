@@ -39,6 +39,7 @@ public class Group extends AbstractEntity {
 
     public Group(UUID id, String name, String description, String logoUrl, Integer memberCount){
         super(id);
+        this.memberCount = users.size();
         this.name = name;
         this.description = description;
         this.logoUrl = logoUrl;
