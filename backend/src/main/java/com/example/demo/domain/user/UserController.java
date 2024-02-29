@@ -5,6 +5,8 @@ import com.example.demo.domain.user.dto.UserMapper;
 import com.example.demo.domain.user.dto.UserRegisterDTO;
 import java.util.List;
 import java.util.UUID;
+
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -59,6 +61,7 @@ public class UserController {
 
   @GetMapping("group/{id}")
   @PreAuthorize("hasAuthority('READ_OWN_GROUP') or @userPermissionEvaluator.isInGroup(authentication.principal.user, #id)")
+  @Operation(summary = "Get the users of a group", description = "When successful it returns the members of a group in a JSON-Code with the status code 200.")
   public ResponseEntity<List<UserDTO>> getUserFromGroup(@PathVariable UUID id, @RequestParam(defaultValue = "0") int page){
       return ResponseEntity.ok().body(userMapper.toDTOs(userService.getUsersByGroupId(id, PageRequest.of(page, 10))));
   }

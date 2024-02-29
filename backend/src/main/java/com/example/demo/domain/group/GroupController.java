@@ -22,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
 @Log4j2
@@ -72,5 +73,16 @@ public class GroupController {
     public ResponseEntity<HttpStatus> deleteGroup (@PathVariable UUID id){
         groupService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Handles NoSuchElementException by returning a 404 (Not Found) response
+     * with the exception message.
+     * @param nsee The NoSuchElementException to handle.
+     * @return ResponseEntity<String> HTTP response with status 404 and exception message.
+     */
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException nsee){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(nsee.getMessage());
     }
 }
