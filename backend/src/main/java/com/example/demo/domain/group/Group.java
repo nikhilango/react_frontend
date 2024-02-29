@@ -33,12 +33,13 @@ public class Group extends AbstractEntity {
     @Transient
     private Integer memberCount;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JsonBackReference
     private Set<User> users;
 
     public Group(UUID id, String name, String description, String logoUrl, Integer memberCount){
         super(id);
+        this.memberCount = users.size();
         this.name = name;
         this.description = description;
         this.logoUrl = logoUrl;
