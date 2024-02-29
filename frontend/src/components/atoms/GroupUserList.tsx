@@ -17,7 +17,7 @@ const GroupUserList: React.FC<Props> = ({groupId}) => {
         UserService.getUserFromGroup(groupId).then((data) => {
           setUsers(data.data);
         })
-    })
+    }, [groupId])
     
     return(
         <div>

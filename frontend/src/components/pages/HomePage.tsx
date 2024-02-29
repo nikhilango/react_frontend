@@ -23,7 +23,7 @@ export default function HomePage() {
     GroupsService.getAllGroups().then((data : any) => {
       setGroupsList(data.data);
     });
-  })
+  }, []);
 
   if ([authorities.USER_MODIFY].some(AuthorityService.hasAuthority)) {
      return (
