@@ -4,7 +4,7 @@ import { User } from "../../types/models/User.model";
 
 // Define the properties expected by the GroupUserList component
 interface Props {
-    groupId: string; // The unique identifier for the group
+    groupId: string | undefined; // The unique identifier for the group
   }
   
   // Functional component for displaying a list of users in a group
