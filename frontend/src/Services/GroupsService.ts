@@ -5,8 +5,8 @@ import { Group } from "../types/models/Group";
 
 
 const GroupsService = ({
-    getGroup: async (groupId: string) => {
-        return await api.get<Group>(`/group/${groupId}`);
+    getGroup: async (userId: string) => {
+        return await api.get<Group>(`/group/${userId}`);
     },
 
     getAllGroups: () => {

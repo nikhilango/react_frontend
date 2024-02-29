@@ -7,7 +7,7 @@ const UserService = {
     return data;
   },
 
-  getUserFromGroup: async (groupId: string) => {
+  getUserFromGroup: async (groupId: string | undefined) => {
     return api.get(`/user/group/${groupId}`)
   },
 

@@ -3,7 +3,7 @@ import UserService from "../../Services/UserService";
 import { User } from "../../types/models/User.model";
 
 interface Props {
-    groupId: string;
+    groupId: string | undefined;
 }
 
 

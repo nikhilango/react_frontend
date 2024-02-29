@@ -3,7 +3,7 @@ import logo from "../../images/team-placeholder.png";
 import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Group } from '../../types/models/Group';
 import LogoutIcon from '@mui/icons-material/Logout';
 import GroupsService from '../../Services/GroupsService';
@@ -13,17 +13,26 @@ import authorities from '../../config/Authorities';
 import AuthorityService from '../../Services/AuthorityService';
 import UserService from '../../Services/UserService';
 import GroupUserList from '../atoms/GroupUserList';
+import ActiveUserContext, { ActiveUserContextType } from '../../Contexts/ActiveUserContext';
 
 export default function HomePage() {
 
   const [groupsList, setGroupsList] = useState<Group[]>([]);
+  const [groupOfUser, setGroupOfUser] = useState<Group>();
   const navigate = useNavigate();
+  const {user} = useContext(ActiveUserContext)
 
   useEffect(() => {
     GroupsService.getAllGroups().then((data : any) => {
       setGroupsList(data.data);
     });
   }, []);
+
+  useEffect(() => {
+    GroupsService.getGroup("6175866d-45f0-4f60-9811-cec7e551e6fb").then((data : any) => {
+      setGroupOfUser(data.data);
+    });
+  }, [user]);
 
   if ([authorities.USER_MODIFY].some(AuthorityService.hasAuthority)) {
      return (
@@ -103,30 +112,28 @@ export default function HomePage() {
     >
       <h1>Groups</h1>
       <div>
-        {groupsList.map((group) =>
-            (
-            <div className='group_container'>
-              <img src={logo} alt="" />
-              <div className='group_description'>
-                <h1 className='group_name'>{group.name}</h1>
-                <h4 className='group_motto'>{group.description}</h4>
-                <Accordion className='dropdown'>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1-content"
-                    id="panel1-header"
-                  >
-                    Users: {group.memberCount}
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <GroupUserList groupId={group.id}></GroupUserList>
-                  </AccordionDetails>
-                </Accordion>
-              </div>
-            </div>
-            )
-        )}
+        <div className='group_container'>
+          <img src={logo} alt="" />
+          <div className='group_description'>
+            <h1 className='group_name'>{groupOfUser?.name}</h1>
+            <h4 className='group_motto'>{groupOfUser?.description}</h4>
+            <Accordion className='dropdown'>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                Users: {groupOfUser?.memberCount}
+              </AccordionSummary>
+              <AccordionDetails>
+                <GroupUserList groupId={groupOfUser?.id}></GroupUserList>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+        </div>
+      
       </div>
     </Box>
   );
 }
+
