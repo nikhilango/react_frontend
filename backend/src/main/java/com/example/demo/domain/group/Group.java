@@ -33,7 +33,7 @@ public class Group extends AbstractEntity {
     @Transient
     private Integer memberCount;
 
-    @OneToMany( fetch = FetchType.EAGER, mappedBy = "group")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "group")
     @JsonBackReference
     private Set<User> users;
 
@@ -43,7 +43,6 @@ public class Group extends AbstractEntity {
         this.description = description;
         this.logoUrl = logoUrl;
         this.memberCount = memberCount;
-
     }
 
 }

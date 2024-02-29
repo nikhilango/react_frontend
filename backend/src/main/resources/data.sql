@@ -19,8 +19,8 @@ values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'admin@example.com', 'James','Bo
 INSERT INTO role(id, name)
 VALUES ('d29e709c-0ff1-4f4c-a7ef-09f656c390f1', 'DEFAULT'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'ADMIN'),
-('c6aee32d-8c35-4481-8b3e-a876a39b0c02', 'GROUP_USER'),
-('01dbec27-4977-4626-91c1-e5480dc0470b', 'NO_GROUP_USER')
+('c6aee32d-8c35-4481-8b3e-a876a39b0c02', 'USER')
+
 
 ON CONFLICT DO NOTHING;
 
@@ -42,8 +42,8 @@ values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'd29e709c-0ff1-4f4c-a7ef-09f656c
        ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'd29e709c-0ff1-4f4c-a7ef-09f656c390f1'),
        ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02'),
        ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'ab505c92-7280-49fd-a7de-258e618df074'),
-       ('28376925-deb6-4d69-b8c4-b83256843f45', '01dbec27-4977-4626-91c1-e5480dc0470b'),
-       ('ba804cb9-fa14-42a5-afaf-be488742fc54','c6aee32d-8c35-4481-8b3e-a876a39b0c02')
+       ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02'),
+       ('28376925-deb6-4d69-b8c4-b83256843f45', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02')
  ON CONFLICT DO NOTHING;
 
 --assign authorities to roles
@@ -52,7 +52,6 @@ VALUES ('d29e709c-0ff1-4f4c-a7ef-09f656c390f1', '2ebf301e-6c61-4076-98e3-2a38b31
 ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
 ('ab505c92-7280-49fd-a7de-258e618df074', '73f35e6f-c71f-4a03-bbbf-79e7d3fa925e'),
 ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '21c942db-a275-43f8-bdd6-d048c21bf5ab'),
-('01dbec27-4977-4626-91c1-e5480dc0470b', '73f35e6f-c71f-4a03-bbbf-79e7d3fa925e'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'ea6418f3-cdee-4044-ba7a-7b427ad4106e'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'c1958972-f37f-406b-9b57-29dbd28105c0'),
 ('ab505c92-7280-49fd-a7de-258e618df074', 'c7fe470c-4b69-44ba-911e-74c17672f3fc'),
