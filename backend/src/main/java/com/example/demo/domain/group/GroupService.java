@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface GroupService extends AbstractService<Group> {
     @Override
     Group updateById(UUID id, Group entity) throws NoSuchElementException;
+    @Override
+    Group save(Group group);
 }

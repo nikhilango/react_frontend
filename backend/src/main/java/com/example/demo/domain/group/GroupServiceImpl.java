@@ -14,15 +14,18 @@ import java.util.*;
 @Log4j2
 @Service
 public class GroupServiceImpl extends AbstractServiceImpl<Group> implements GroupService {
+    private final GroupRepository groupRepository;
     private final RoleService roleService;
     private final UserService userService;
     private final UserRepository userRepository;
 @Autowired
-    public GroupServiceImpl(GroupRepository repository, RoleService roleService, UserService userService, UserRepository userRepository) {
+    public GroupServiceImpl(GroupRepository repository, RoleService roleService, UserService userService, UserRepository userRepository,
+                            GroupRepository groupRepository) {
     super(repository);
     this.roleService = roleService;
     this.userService = userService;
     this.userRepository = userRepository;
+    this.groupRepository = groupRepository;
 }
     @Override
     public Group updateById(UUID id, Group group) throws NoSuchElementException {
@@ -43,5 +46,15 @@ public class GroupServiceImpl extends AbstractServiceImpl<Group> implements Grou
         } else {
             throw new NoSuchElementException(String.format("Entity with ID '%s' could not be found", id));
         }
+    }
+    @Override
+    public Group save(Group group){
+        groupRepository.save(group);
+        for (User user: group.getUsers()) {
+            User existingUser = userService.findById(user.getId());
+            existingUser.setGroup(group);
+            userRepository.save(existingUser);
+        }
+    return group;
     }
 }
