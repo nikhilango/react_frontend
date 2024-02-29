@@ -29,7 +29,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    GroupsService.getGroup("6175866d-45f0-4f60-9811-cec7e551e6fb").then((data : any) => {
+    GroupsService.getGroup(user!.group_id).then((data : any) => {
       setGroupOfUser(data.data);
     });
   }, [user]);
