@@ -14,12 +14,17 @@ import admin from '../../fixtures/admin.json'
 describe('User Edit', () => {
     it('Admin Navigates to User List and Edits a User', () => {
        
-        cy.contains("10 Users").click();
-        cy.contains("See All Users").click();
+        
 
         cy.url().should("include", admin.userspage);
         cy.contains("Edit").click();
         
-        cy.get("#Firstname").type("test");
+        cy.get("#firstName").type("test");
+        cy.get("lastName").type("test");
+
+        cy.contains("Save").click();
+        cy.contains("Cancel").click();
+
+        cy.contains("Jamestest").should('be.visible');
     })
 })

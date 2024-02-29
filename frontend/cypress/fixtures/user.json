@@ -1,0 +1,7 @@
+{
+    "Firstname": "localhost:3000/login",
+    "homepage" : "localhost:3000/",
+    "userspage" : "localhost:3000/users",
+    "email": "admin@example.com",
+    "password": "1234"
+}
