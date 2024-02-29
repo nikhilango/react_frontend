@@ -26,10 +26,12 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
   const formik = useFormik({
     initialValues: {
       id: group.id,
-      logo: group ? group.logo : '',
+      logo_url: group ? group.logo_url : '',
       name: group ? group.name : '',
-      motto: group ? group.motto : '',
+      description: group ? group.description : '',
       users: group ? group.users : [],
+      member_count: group ? group.member_count: 0,
+
     },
     validationSchema: object({
       firstName: string().required().min(2).max(50),

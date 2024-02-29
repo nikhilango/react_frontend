@@ -12,7 +12,6 @@ const UserPage = () => {
     firstName: '',
     lastName: '',
     email: '',
-    group_id: '',
     roles: [],
   });
 
