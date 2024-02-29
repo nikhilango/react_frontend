@@ -65,8 +65,8 @@ const GroupForm = ({ group, submitActionHandler }: GroupProps) => {
             sx={{ paddingRight: '10px' }}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            error={Boolean(formik.touched.motto && formik.errors.motto)}
-            value={formik.values.motto}
+            error={Boolean(formik.touched.description && formik.errors.description)}
+            value={formik.values.description}
           />
           <Autocomplete
             multiple
