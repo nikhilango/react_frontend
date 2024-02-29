@@ -4,7 +4,7 @@ export type Group = {
     id: string;
     name: string;
     description: string;
-    logo_url: string;
-    member_count: number;
+    logoUrl: string;
+    memberCount: number;
     users: User[];
 }

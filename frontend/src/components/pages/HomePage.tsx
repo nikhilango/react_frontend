@@ -18,20 +18,12 @@ export default function HomePage() {
 
   const [groupsList, setGroupsList] = useState<Group[]>([]);
   const navigate = useNavigate();
-  const [groupUsers, setGroupUsers] = useState([]);
 
   useEffect(() => {
     GroupsService.getAllGroups().then((data : any) => {
       setGroupsList(data.data);
     });
   })
-
-  const handleGroupUser = (groupId: string) => {
-    UserService.getUserFromGroup(groupId).then((data) => {
-      return data.data;
-    })
-  }
-
 
   if ([authorities.USER_MODIFY].some(AuthorityService.hasAuthority)) {
      return (
@@ -77,12 +69,22 @@ export default function HomePage() {
                     aria-controls="panel1-content"
                     id="panel1-header"
                   >
-                    Users: {group.member_count}
+                    Users: {group.memberCount}
                   </AccordionSummary>
                   <AccordionDetails>
                     <GroupUserList groupId={group.id}></GroupUserList>
                   </AccordionDetails>
                 </Accordion>
+                <Button
+                  onClick={() => navigate("/groupedit/" + group.id)}
+                >
+                  Edit Group
+                </Button>
+                <Button
+                  onClick={() => GroupsService.deleteGroup(group.id)}
+                >
+                  Delete Group
+                </Button>
               </div>
             </div>
             )
@@ -114,7 +116,7 @@ export default function HomePage() {
                     aria-controls="panel1-content"
                     id="panel1-header"
                   >
-                    Users: {group.member_count}
+                    Users: {group.memberCount}
                   </AccordionSummary>
                   <AccordionDetails>
                     <GroupUserList groupId={group.id}></GroupUserList>
